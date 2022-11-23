@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import Errorcat from './img/error.gif';
 import waiting from './img/loading.gif';
+import { ButtonGroup, Button, TextField} from '@mui/material';
 const initialpage = 0;
-
 
 function Gif() {
   const [Giff, setGiff] = useState([])
   const [loading, setloading] = useState(false)
-  const [Error, setError] = useState(false)
   const [limit, setlimit] = useState(20)
   const [search, setsearch] = useState("Barney+Stinson")
   const [Page, setPage] = useState(initialpage)
   const apiURL = `https://api.giphy.com/v1/gifs/search?api_key=eSuJruLdh1NuoFKB4UUXsicSQmvLrmHD&q=${search}&limit=${limit}&offset=${Page*limit}&rating=g&lang=en`
-
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,9 +25,11 @@ function Gif() {
   }
   function buttonClick(event) {
     const value = event.target.innerText;
-    if(value==="Next")setPage(Page+1)
-    if(value==="Previus")setPage(Page-1)
+    if(value.toLowerCase()==="next")setPage(Page+1)
+    if(value.toLowerCase()==="previous")setPage(Page-1)
 }
+
+
 
   useEffect(function () {
     setloading(true)
@@ -38,32 +39,30 @@ function Gif() {
         const { data } = response
         const gifs = data.map(image => {
           const { images, title } = image
-          const { url } = images.downsized_medium
+          const { url } = images.fixed_height_downsampled
           return { title, url }
         })
         return gifs
       })
-      .catch(err => {
-        setError = (true)
-        setloading(false)
-      })
+      
       .then(gifs => {
         setGiff(gifs)
         setloading(false)
-        setError = (false)
+        
       })
   }, [search, limit, Page])
 
 
-  if (Error === 'true' || Giff === false) {
+  if (Giff === false) {
     return (
       <div className="web">
-        <section className='title'><h1> Buscador de Gifs</h1>
+        <section className='title'>´
+        <h1>GIFS SEEKER</h1>
         </section>
         <section className="top">
           <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Cerca" name='search' autoComplete='off'></input>
-            <button type='submit'>Buscar</button>
+          <TextField size="small" type="text" placeholder="Search" name='search' autoComplete='off'></TextField>
+            <Button type='submit' variant="contained"></Button>
           </form>
         </section>
         <section className="videos">
@@ -77,11 +76,12 @@ function Gif() {
   } else if (loading === true) {
     return (
       <div className="web">
-        <section className='title'><h1> Buscador de Gifs</h1></section>
+        <section className='title'>
+          <h1>GIFS SEEKER</h1></section>
         <section className="top">
           <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Cerca" name='search' autoComplete='off'></input>
-            <button type='submit'>Buscar</button>
+          <TextField size="small" type="text" placeholder="Search" name='search' autoComplete='off'></TextField>
+            <Button type='submit' variant="contained">Buscar</Button>
           </form>
         </section>
         <section className="videos">
@@ -98,11 +98,14 @@ function Gif() {
     if (Page===0) {
       return (
         <div className="web">
-          <section className='title'><h1> Buscador de Gifs</h1></section>
+          <section className='title'>
+            <h1>GIFS SEEKER</h1>
+          </section>
+          <section className='line'></section>
           <section className="top">
             <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Cerca" name='search' autoComplete='off'></input>
-              <button type='submit'>Buscar</button>
+            <TextField size="small" type="text" placeholder="Search" name='search' autoComplete='off'></TextField>
+              <Button type='submit' variant="contained" >Search</Button>
             </form>
           </section>
           <section className='space'></section>
@@ -113,25 +116,27 @@ function Gif() {
                 <img src={singleGif.url} />
               </div>)}
           </section>
+          <section className='line'></section>
           <section className="bot">
             <form onSubmit={handlenumber}>
-              <input type="number" placeholder={limit} name='number' autoComplete='off'></input>
-              <button className='botbutton' type='submit'>Por Página</button>
+              <TextField size="small" type="number" placeholder={limit} name='number' autoComplete='off'></TextField>
+              <Button variant="contained" className='botbutton' type='submit'>For Page</Button>
             </form>
           </section>
           <section className='Pag'>
-            <button onClick={buttonClick}>Next</button>
+            <Button onClick={buttonClick} variant="contained" >Next</Button>
           </section>
         </div>
       );
     }else{
       return (
         <div className="web">
-          <section className='title'><h1> Buscador de Gifs</h1></section>
+          <section className='title'>
+            <h1>GIFS SEEKER</h1></section>
           <section className="top">
             <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Cerca" name='search' autoComplete='off'></input>
-              <button type='submit'>Buscar</button>
+              <TextField size="small" type="text" placeholder="Search" name='search' autoComplete='off'></TextField>
+              <Button type='submit' variant="contained">Buscar</Button>
             </form>
           </section>
           <section className='space'></section>
@@ -144,12 +149,15 @@ function Gif() {
           </section>
           <section className="bot">
             <form onSubmit={handlenumber}>
-              <input type="number" placeholder={limit} name='number' autoComplete='off'></input>
-              <button className='botbutton' type='submit'>Por Página</button>
+            <TextField size="small" type="number" placeholder={limit} name='number' autoComplete='off'></TextField>
+              <Button variant="contained" className='botbutton' type='submit'>For Page</Button>
             </form>
           </section>
           <section className='Pag'>
-            <button onClick={buttonClick}>Previus</button> <button onClick={buttonClick}>Next</button>
+            <ButtonGroup variant="contained" color="primary">
+            <Button onClick={buttonClick}>Previous</Button> 
+            <Button variant="contained" onClick={buttonClick}>Next</Button>
+            </ButtonGroup>
           </section>
         </div>
       );
