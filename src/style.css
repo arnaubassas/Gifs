@@ -1,15 +1,10 @@
 body{
-    background-color: white;
+    background-color: antiquewhite;
     box-sizing: border-box;
-    margin: 0px 100px;
     padding: 0px;
     
 }
-.web{
-    padding: 0 3px 0 3px;
-    background-color: black;
 
-}
 section{
     box-sizing: border-box;
     display: flex;
@@ -22,14 +17,17 @@ section{
     flex-direction: row;
     align-items: center;
     padding: 5px;
+    display: flex;
+    justify-content: center;
     
 }
 .videos{
     background-color: white;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
-    padding-bottom: 15px;
+    padding: 0 50px 15px 50px;
+    
 }
 input{
     margin-top: 20px;
@@ -78,11 +76,18 @@ button{
     height: 40px;
     width: 150px;
 }
-.line{
-    height: 3px;
-    background-color: black;
-    color:black;
-}
+
 .Number{
     height: 36px;
 }
+@media screen and (max-width: 600px) {
+    .videos{
+        
+        padding:0px;
+        padding-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        
+    }
+    
+  }

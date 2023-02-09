@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import Errorcat from './img/error.gif';
 import waiting from './img/loading.gif';
-import { ButtonGroup, Button, TextField} from '@mui/material';
+import { ButtonGroup, Button, TextField, Container} from '@mui/material';
 const initialpage = 0;
 
 function Gif() {
@@ -55,13 +55,14 @@ function Gif() {
 
   if (Giff === false) {
     return (
+      <Container>
       <div className="web">
         <section className='title'>´
         <h1>GIFS SEEKER</h1>
         </section>
         <section className="top">
           <form onSubmit={handleSubmit}>
-          <TextField size="small" type="text" placeholder="Search" name='search' autoComplete='off'></TextField>
+          <TextField className="textField" size="small" type="text" placeholder="Search" name='search' autoComplete='off'></TextField>
             <Button type='submit' variant="contained"></Button>
           </form>
         </section>
@@ -72,9 +73,11 @@ function Gif() {
         </section>
         <section className="bot">
         </section>
-      </div>);
+      </div></Container>);
+      
   } else if (loading === true) {
     return (
+      <Container>
       <div className="web">
         <section className='title'>
           <h1>GIFS SEEKER</h1></section>
@@ -92,11 +95,12 @@ function Gif() {
         <section className="bot">
         </section>
       </div>
-    );
+      </Container>);
 
   } else {
     if (Page===0) {
       return (
+        <Container>
         <div className="web">
           <section className='title'>
             <h1>GIFS SEEKER</h1>
@@ -127,9 +131,10 @@ function Gif() {
             <Button onClick={buttonClick} variant="contained" >Next</Button>
           </section>
         </div>
-      );
+        </Container>);
     }else{
       return (
+        <Container>
         <div className="web">
           <section className='title'>
             <h1>GIFS SEEKER</h1></section>
@@ -160,7 +165,7 @@ function Gif() {
             </ButtonGroup>
           </section>
         </div>
-      );
+        </Container>);
     } 
   }
 }
