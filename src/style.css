@@ -1,17 +1,17 @@
-body{
+body {
     background-color: antiquewhite;
     box-sizing: border-box;
     padding: 0px;
-    
+
 }
 
-section{
+section {
     box-sizing: border-box;
     display: flex;
     overflow: hidden;
 }
 
-.top{
+.top {
     background-color: white;
     height: 60px;
     flex-direction: row;
@@ -19,75 +19,87 @@ section{
     padding: 5px;
     display: flex;
     justify-content: center;
-    
+
 }
-.videos{
+
+.videos {
     background-color: white;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     padding: 0 50px 15px 50px;
-    
+    text-align: center;
+
 }
-input{
+
+input {
     margin-top: 20px;
     height: 30px;
     justify-content: right;
     width: 200px;
     border-radius: 5px;
-}  
+}
 
-.bot{
+.bot {
     background-color: white;
     height: 100px;
     justify-content: center;
     align-items: center;
 }
-.Pag{
+
+.Pag {
     background-color: white;
     justify-content: center;
 }
 
 
-h1{
-    
-    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+h1 {
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.title{
+
+.title {
     background-color: white;
     justify-content: center;
-    color: rgb(66, 133,244)
-    
-}   
-button{
+    color: rgb(66, 133, 244)
+}
+
+button {
     height: 40px;
     width: 90px;
     border: none;
     border-radius: 2px;
 
 }
-.Square{
+
+.Square {
     text-decoration: underline;
     padding: 0 10px;
     margin-bottom: 20px;
 
 }
-.botbutton{
+
+.botbutton {
     height: 40px;
     width: 150px;
 }
 
-.Number{
+.Number {
     height: 36px;
 }
+
 @media screen and (max-width: 600px) {
-    .videos{
-        
-        padding:0px;
+    .videos {
+
+        padding: 0px;
         padding-bottom: 15px;
         display: flex;
         justify-content: center;
-        
+        max-width: 600 px;
+        text-align: center;
     }
-    
-  }
+
+    h4 {
+        padding: 0px 20px;
+    }
+}
